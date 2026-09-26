@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "topic": "Quadratic Equations",
+        "question": "Find roots of x\u00b2 - 2x + 2 = 0",
+        "difficulty": "Moderate"
+    },
+    {
+        "id": 2,
+        "topic": "Quadratic Equations",
+        "question": "Find roots of x\u00b2 - 4x + 3 = 0",
+        "difficulty": "Moderate"
+    },
+    {
+        "id": 3,
+        "topic": "Quadratic Equations",
+        "question": "Find roots of x\u00b2 - 2x + 5 = 0",
+        "difficulty": "Moderate"
+    },
+    {
+        "id": 4,
+        "topic": "Quadratic Equations",
+        "question": "Find roots of x\u00b2 - 2x + 5 = 0",
+        "difficulty": "Moderate"
+    },
+    {
+        "id": 5,
+        "topic": "Quadratic Equations",
+        "question": "Find roots of x\u00b2 - 2x + 1 = 0",
+        "difficulty": "Moderate"
+    }
+]

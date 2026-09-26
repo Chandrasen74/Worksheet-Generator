@@ -1,0 +1,35 @@
+{
+    "solver_core": {
+        "Real Numbers": {
+            "formula": "HCF(a,b) * LCM(a,b) = a * b",
+            "note": "Only for two numbers"
+        },
+        "Polynomials": {
+            "formula": "sum of zeroes = -b/a, product of zeroes = c/a",
+            "note": "For ax^2+bx+c"
+        },
+        "Quadratic Equations": {
+            "formula": "x = (-b \u00b1 \u221a(b^2 - 4ac)) / 2a",
+            "note": "Valid if b^2 - 4ac \u2265 0"
+        }
+    },
+    "misconceptions": [
+        {
+            "error": "Dividing by zero",
+            "correction": "undefined"
+        },
+        {
+            "error": "Confusing AP and GP",
+            "correction": "AP uses common difference"
+        },
+        {
+            "error": "Ignoring negative roots in quadratics",
+            "correction": "check discriminant"
+        }
+    ],
+    "validity_guards": [
+        "denominator != 0",
+        "discriminant >= 0 for real roots",
+        "triangle sides > 0"
+    ]
+}
