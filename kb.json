@@ -1,0 +1,38 @@
+{
+    "solver": {
+        "Real Numbers": {
+            "formula": "HCF(a,b) \u00d7 LCM(a,b) = a \u00d7 b",
+            "note": "Valid for a,b > 0"
+        },
+        "Polynomials": {
+            "formula": "sum of zeroes = \u2212b/a, product = c/a",
+            "note": "For ax\u00b2+bx+c"
+        },
+        "Trigonometry": {
+            "formula": "sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1",
+            "note": "Valid for 0 \u2264 \u03b8 \u2264 90\u00b0"
+        },
+        "AP": {
+            "formula": "a\u2099 = a + (n\u22121)d",
+            "note": "n must be positive integer"
+        }
+    },
+    "misconceptions": [
+        "Dividing by zero (undefined)",
+        "sin\u00b2\u03b8 as sin(\u03b8\u00b2)",
+        "Ignoring negative roots in quadratics",
+        "Confusing AP and GP",
+        "Assuming \u2220A = \u2220P in \u25b3ABC \u223c \u25b3PQR",
+        "Adding units incorrectly"
+    ],
+    "validity_guards": [
+        "denominator \u2260 0",
+        "discriminant \u2265 0",
+        "triangle sides > 0",
+        "distance \u2265 0",
+        "sin \u03b8 \u2264 1",
+        "cos \u03b8 \u2264 1",
+        "n > 0 for terms",
+        "sum of probabilities = 1"
+    ]
+}

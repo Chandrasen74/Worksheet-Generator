@@ -3,23 +3,272 @@
 <head>
     <meta charset="utf-8">
     <style>
-        @page { size: A4; margin: 2.9pt; }
-        body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; margin: 36pt; }
-        .header { border-bottom: 0.5pt solid black; height: 50pt; }
-        .logo { float: right; width: 155pt; }
-        .question { margin-bottom: 18pt; page-break-inside: avoid; }
+        @page { size: A4; margin: 8.5mm; }
+        @media print { body { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+        body { 
+            font-family: 'Times New Roman', serif; 
+            font-size: 12pt; 
+            line-height: 1.5; 
+            margin: 0; 
+            padding: 0;
+        }
+        .page-border {
+            border: 2.9pt solid #003300;
+            outline: 0.7pt solid #003300;
+            outline-offset: 0.7pt;
+            margin: 8.5mm;
+            padding: 20pt;
+            min-height: calc(297mm - 17mm - 40pt);
+        }
+        .header { 
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20pt;
+            border-bottom: 0.5pt solid #000;
+            padding-bottom: 10pt;
+            margin-bottom: 20pt;
+        }
+        .header-left { font-size: 12pt; line-height: 24pt; }
+        .logo { width: 155pt; height: 50pt; object-fit: contain; }
+        .section-header { 
+            text-transform: uppercase; 
+            font-weight: normal; 
+            margin: 26pt 0 18pt 0; 
+            font-size: 12pt;
+        }
+        .question { 
+            margin-bottom: 18pt; 
+            page-break-inside: avoid; 
+        }
+        .mcq-options { 
+            display: grid; 
+            grid-template-columns: 262.9pt 1fr; 
+            margin-top: 8pt;
+            row-gap: 8pt;
+        }
+        .ar-direction {
+            margin-bottom: 18pt;
+            line-height: 1.5;
+        }
+        .footer {
+            position: fixed;
+            bottom: 15mm;
+            right: 15mm;
+            font-size: 11pt;
+        }
     </style>
 </head>
 <body>
+<div class="page-border">
     <div class="header">
-        <div class="logo">
-            <img src="logo_green_on_white.png" style="width:155pt">
+        <div class="header-left">
+            Name:  _____________________________________<br>
+            Class: X                   Section: A<br>
+            Subject: MATHEMATICS                          Date: ____________<br>
+            Chapter/Topic: MULTIPLE CHAPTERS
         </div>
-        <div>
-            Name: _____________________________________<br>
-            Class: X                  Section: A<br>
-            Subject: MATHEMATICS                            Date: ____________
+        <img src="data:image/png;base64,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" class="logo" alt="DPS Logo">
+    </div>
+    
+    <div class="section-header">SECTION A — MULTIPLE CHOICE QUESTIONS</div>
+    <div class="question">
+        <strong>Q1.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
         </div>
     </div>
-    <h2>PRACTICE WORKSHEET</h2>
-<div class="question">Q1. Find roots of x² - 2x + 2 = 0</div><div class="question">Q2. Find roots of x² - 4x + 3 = 0</div><div class="question">Q3. Find roots of x² - 2x + 5 = 0</div><div class="question">Q4. Find roots of x² - 2x + 5 = 0</div><div class="question">Q5. Find roots of x² - 2x + 1 = 0</div></body></html>
+    <div class="question">
+        <strong>Q2.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q3.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q4.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q5.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q6.</strong> Aarav needs to solve: Height and Distance. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q7.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q8.</strong> Aarav needs to solve: Height and Distance. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q9.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q10.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q11.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q12.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q13.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q14.</strong> Aarav needs to solve: Find roots of quadratic. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q15.</strong> Aarav needs to solve: Height and Distance. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q16.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q17.</strong> Aarav needs to solve: Height and Distance. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q18.</strong> Aarav needs to solve: Find nth term of AP. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+    <div class="question">
+        <strong>Q19.</strong> Aarav needs to solve: Height and Distance. Calculate the value.
+        <div class="mcq-options">
+            <div>(a) Option A</div><div>(b) Option B</div>
+            <div>(c) Option C</div><div>(d) Option D</div>
+        </div>
+    </div>
+
+    <div class="section-header">SECTION B — ASSERTION-REASON QUESTIONS</div>
+    <div class="ar-direction">
+        <strong>Direction:</strong> In the following questions, a statement of assertion (A) is followed by a statement of reason (R). Mark the correct choice as:<br>
+        (a) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A).<br>
+        (b) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A).<br>
+        (c) Assertion (A) is true but reason (R) is false.<br>
+        (d) Assertion (A) is false but reason (R) is true.
+    </div>
+    <div class="question">
+        <strong>Q20.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q21.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q22.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q23.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q24.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q25.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q26.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q27.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q28.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q29.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="question">
+        <strong>Q30.</strong><br>
+        <strong>Assertion (A):</strong> Sample assertion statement.<br>
+        <strong>Reason (R):</strong> Sample reason statement.
+    </div>
+    <div class="footer">Page <strong>1</strong> of 1</div>
+</div>
+</body>
+</html>
