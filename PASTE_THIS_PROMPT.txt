@@ -7,11 +7,11 @@
    SUBJECT         : Mathematics
    GRADE           : 10                 CLASS/SECTION : X | A
    BOARD           : CBSE               SESSION       : 2026-27
-   CHAPTER         : 9 — Some Applications of Trigonometry
+   CHAPTER         : all of these chapters - real numbers, polynommials, introduction to trignometery. probablitiy, pair of linear equations in two variable, arithematic progression, quadractic equations, coordinate geometery,some applications of trignometery, triangle 
    TEXTBOOK        : NCERT (CBSE COURSE, PYQ'S, R.S Agarwal type question banks)
    WORKSHEET TYPE  : Practice
-   SECTIONS        : MCQ 20 · AssertionReason 20
-   DIFFICULTY      : Mixed              SHOW MARKS : no
+   SECTIONS        : However many section needed for a paper going on for 3 hours of duration
+   DIFFICULTY      : Mixed              SHOW MARKS : yes
    SEED            : 20260813           VARIANT    : A
    OUTPUT          : PDF-ready HTML     ANSWER KEY : separate file
    EXCLUDE IDS     : (none)
