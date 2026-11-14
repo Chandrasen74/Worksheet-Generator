@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Chandrasen. All rights reserved.
+# This source code is proprietary and confidential.
+# Unauthorized copying, modification, distribution, or use is prohibited.
+
 """
 PHASE 2: KNOWLEDGE BASE FOR CBSE CLASS 10 MATHEMATICS
 Chapters: Real Numbers, Polynomials, Intro to Trigonometry, Probability,
