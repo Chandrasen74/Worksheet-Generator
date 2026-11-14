@@ -1,14 +1,34 @@
-# Worksheet Generator
+# Worksheet-Generator
+
+**Repository:** https://github.com/Chandrasen74/Worksheet-Generator
+
+![Screenshot of Worksheet-Generator](screenshot.png)
 
 ## Overview
-**Worksheet-Generator** is a HTML, Python project in this repository.
+`Worksheet-Generator` is a Python/HTML project.
+- **Primary language:** HTML
+- **Languages detected:** Python, HTML
+- **Stack/tech:** Python, HTML
 
-- Primary language: **HTML**
-- Detected stack: HTML, Python
+## Language & stack details
+- Languages: Python, HTML
+- Frameworks/tools/libraries: Python, HTML
 
-## Repository contents
+## How to install & run
+### Prerequisites
+- [Python 3](https://www.python.org/downloads/) installed
+
+### Setup & run
+```bash
+git clone https://github.com/Chandrasen74/Worksheet-Generator.git
+cd Worksheet-Generator
+python build_kb.py
+```
+
+## Repository structure (top-level/sample)
 - `MASTER_Worksheet_Engine.md`
 - `PASTE_THIS_PROMPT.txt`
+- `README.md`
 - `answer_key.md`
 - `audit.txt`
 - `build_kb.py`
@@ -21,15 +41,8 @@
 - `process_logo.py`
 - `questions.json`
 - `render_worksheet.py`
+- `screenshot.png`
 - `worksheet.html`
 
-## Getting started
-```bash
-git clone https://github.com/Chandrasen74/Worksheet-Generator.git
-cd Worksheet-Generator
-# open index.html in a browser, or serve locally:
-python -m http.server 8000
-```
-
 ## Status
-README generated/updated as part of a profile-wide documentation pass based on repository contents.
+Documented with screenshot, language/stack details, and setup instructions as part of a profile-wide README update.
